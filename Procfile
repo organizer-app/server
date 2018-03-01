@@ -1,2 +1,2 @@
-web: pip install -e .
-flask run
+build: pip install -e .
+web: flask run
