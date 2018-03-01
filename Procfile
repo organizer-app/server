@@ -1,1 +1,2 @@
-web: python index.py
+web: pip install -e .
+flask run
