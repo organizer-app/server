@@ -5,5 +5,6 @@
 - pip3 install flask
 
 # Build and run
-- web: pip install -e .
+- export FLASK_APP=app
+- pip3 install -e .
 - flask run
