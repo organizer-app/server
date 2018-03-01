@@ -5,5 +5,5 @@
 - pip3 install flask
 
 # Build and run
-- pip3 install -r requirements.txt
-- python3 index.py
+- web: pip install -e .
+- flask run
