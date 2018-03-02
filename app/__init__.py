@@ -7,7 +7,7 @@ import app.models.user, app.models.place
 
 flask_app = Flask(__name__)
 
-if os.environ.get('ENVIRONMENT') is None:
+if os.environ.get('ENVIRONMENT') == 'development':
   flask_app.config.from_pyfile('config/settings.cfg')
 
 database.init_app(flask_app)
