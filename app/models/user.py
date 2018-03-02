@@ -1,6 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from app.db.database import database as db
+from datetime import datetime
 
 class User(db.Model):
   __tablename__ = 'Users'
@@ -10,9 +9,8 @@ class User(db.Model):
   full_name = db.Column(db.String(128))
   email = db.Column(db.String(128))
   photo_url = db.Column(db.String(256))
-
-  def __init__(self, name):
-    self.name = name
+  created_at = db.Column(db.DateTime, default=datetime.utcnow())
+  updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
   def __repr__(self):
     return '<id {}>'.format(self.id)
