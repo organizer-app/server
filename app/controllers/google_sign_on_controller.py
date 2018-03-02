@@ -25,7 +25,7 @@ def authenticate():
     authenticated_token = sign_on.authenticate_user(request.args.get('token'))
     return jsonify({'token' : authenticated_token})
   except ValueError as e:
-    return jsonify({'message' : str(e)})
+    return jsonify({'message' : str(e)}), 403
 
 
 
