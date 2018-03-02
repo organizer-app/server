@@ -13,4 +13,4 @@ if os.environ.get('ENVIRONMENT') is None:
 database.init_app(flask_app)
 migrate = Migrate(flask_app, database)
 
-import app.views, app.api_controller
+import app.views, app.api.controllers.google_sign_on_controller
