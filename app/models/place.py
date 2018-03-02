@@ -1,4 +1,4 @@
-from app.db.database import database as db
+from db.database import database as db
 from datetime import datetime
 
 class Place(db.Model):
