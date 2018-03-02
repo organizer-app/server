@@ -15,7 +15,7 @@ def authenticate_user(token):
 
 def get_authenticated_info(token):
   try:
-    id_info = id_token.verify_oauth2_token(token, requests.Request(), flask_app.config['GOOGLE_CLIENT_ID'])
+    id_info = id_token.verify_oauth2_token(token, requests.Request(), os.environ.get('GOOGLE_CLIENT_ID'))
    
     if id_info['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
       raise ValueError('Wrong issuer.')
