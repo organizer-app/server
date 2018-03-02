@@ -14,7 +14,3 @@ database.init_app(flask_app)
 migrate = Migrate(flask_app, database)
 
 import app.views, app.api_controller
-
-if __name__ == '__main__':
-  port = int(os.environ.get('PORT', 5000))
-  flask_app.run(host='0.0.0.0', port=port, debug=True)
