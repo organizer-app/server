@@ -12,7 +12,8 @@ class User(db.Model):
   photo_url = db.Column(db.String(256))
   created_at = db.Column(db.DateTime, default=datetime.utcnow())
   updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-  groups = relationship("Group", secondary="UsersToGroups")
+  groups = relationship('Group', secondary='UsersToGroups')
+  backref = db.backref('Users')
 
   def __repr__(self):
     return '<id {}>'.format(self.id)
