@@ -1,3 +1,4 @@
+import os
 from app import flask_app
 from google.oauth2 import id_token
 from google.auth.transport import requests
@@ -26,5 +27,5 @@ def get_authenticated_info(token):
     raise ValueError('Invalid Token.')
   
 def generate_user_token(user_id):
-  token = jwt.encode({'user_id': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, flask_app.config['SECRET_KEY'])
+  token = jwt.encode({'user_id': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, os.environ.get('SECRET_KEY'))
   return token.decode('UTF-8')
