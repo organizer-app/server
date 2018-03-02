@@ -20,11 +20,10 @@ def token_required(f):
   return decorated
 
 @flask_app.route('/authenticate', methods=['POST'])
-@token_required
 def authenticate():
   try:
     authenticated_token = sign_on.authenticate_user(request.args.get('token'))
-    return jsonify({'token' : authenticate_msg})
+    return jsonify({'token' : authenticated_token})
   except ValueError as e:
     return jsonify({'message' : str(e)})
 
