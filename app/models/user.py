@@ -1,5 +1,6 @@
 from app.db.database import database as db
 from datetime import datetime
+from sqlalchemy.orm import relationship
 
 class User(db.Model):
   __tablename__ = 'Users'
@@ -11,6 +12,7 @@ class User(db.Model):
   photo_url = db.Column(db.String(256))
   created_at = db.Column(db.DateTime, default=datetime.utcnow())
   updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+  groups = relationship("Group", secondary="UsersToGroups")
 
   def __repr__(self):
     return '<id {}>'.format(self.id)
