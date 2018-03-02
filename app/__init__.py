@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, yaml
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -8,10 +8,11 @@ import app.models.user, app.models.place
 flask_app = Flask(__name__)
 
 if os.environ.get('DEVELOPMENT_ENVIRONMENT') != 'production':
-  flask_app.config.from_pyfile('config/settings.cfg')
-else:
-  flask_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-  flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')
+  file = open('app/config/settings.yml')
+  dataMap = yaml.load(file)
+  file.close()
+  for key, value in dataMap.items():
+    os.environ[key] = value
 
 database.init_app(flask_app)
 migrate = Migrate(flask_app, database)
