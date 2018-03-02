@@ -1,9 +1,9 @@
 from app import flask_app
-import app.api.helpers.google_sign_on_helper as sign_on
+import app.helpers.google_sign_on_helper as sign_on
 from flask import jsonify, request
 import jwt
 from functools import wraps
- 
+
 def token_required(f):
   def decorated(*args, **kwargs):
     token = request.args.get('token')

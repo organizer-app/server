@@ -9,3 +9,7 @@
 - pip3 install -r requirements.txt
 - pip3 install -e .
 - flask run
+
+Alternatively, use
+- ./run.sh
+(make sure run.sh has execute permissions)
