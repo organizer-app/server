@@ -6,7 +6,7 @@ from functools import wraps
 
 def token_required(f):
   def decorated(*args, **kwargs):
-    token = request.args.get('token')
+    token = request.get_json().get('token')
 
     if not token:
       return jsonify({'message' : 'Token is missing!'}), 403
@@ -22,7 +22,7 @@ def token_required(f):
 @flask_app.route('/authenticate', methods=['POST'])
 def authenticate():
   try:
-    authenticated_token = sign_on.authenticate_user(request.args.get('token'))
+    authenticated_token = sign_on.authenticate_user(request.get_json().get('token'))
     return jsonify({'token' : authenticated_token})
   except ValueError as e:
     return jsonify({'message' : str(e)}), 403

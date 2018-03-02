@@ -7,7 +7,7 @@ from flask import request
 import jwt
 
 def authenticate_user(token):
-  user_info = get_authenticated_info(request.args.get('token'))
+  user_info = get_authenticated_info(request.get_json().get('token'))
   # query user id 
 
   # if user id is new
