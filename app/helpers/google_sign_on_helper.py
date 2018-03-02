@@ -16,7 +16,7 @@ def authenticate_user(token):
 
 def get_authenticated_info(token):
   try:
-    id_info = id_token.verify_oauth2_token(token, requests.Request(), os.environ.get('GOOGLE_CLIENT_ID'))
+    id_info = id_token.verify_oauth2_token(token, requests.Request(), '153497318804-fv3cc14468utuqri4g6upju4mvodr0a0.apps.googleusercontent.com')
    
     if id_info['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
       raise ValueError('Wrong issuer.')
@@ -24,7 +24,7 @@ def get_authenticated_info(token):
     return id_info
 
   except ValueError as e:
-    raise ValueError('Invalid Token.')
+    raise ValueError('Invalid Token.' + str(e))
   
 def generate_user_token(user_id):
   token = jwt.encode({'user_id': user_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, os.environ.get('SECRET_KEY'))
