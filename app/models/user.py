@@ -1,16 +1,14 @@
-from db.database import database as db
-from datetime import datetime
+from django.db import models
 
-class User(db.Model):
-  __tablename__ = 'Users'
-  id = db.Column(db.Integer, primary_key=True)
-  google_id = db.Column(db.Integer)
-  first_name = db.Column(db.String(128))
-  full_name = db.Column(db.String(128))
-  email = db.Column(db.String(128))
-  photo_url = db.Column(db.String(256))
-  created_at = db.Column(db.DateTime, default=datetime.utcnow())
-  updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+class User(models.Model):
+  google_id = models.IntegerField()
+  first_name = models.CharField(max_length=100)
+  full_name = models.CharField(max_length=100)
+  email = models.CharField(max_length=100)
+  photo_url = models.CharField(max_length=256)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
 
-  def __repr__(self):
-    return '<id {}>'.format(self.id)
+  class Meta:
+    app_label='app'
+    db_table='Users'

@@ -1,6 +1,3 @@
-from app import flask_app
-from flask import render_template
+from django.shortcuts import render
 
-@flask_app.route('/')
-def index():
-    return render_template('index.html')
+# Create your views here.
